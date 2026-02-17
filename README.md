@@ -1,97 +1,122 @@
-# Skybridge Starter
+# Claude Hack Night - Task Manager
 
-A minimal TypeScript template for building MCP and ChatGPT Apps with the [Skybridge](https://docs.skybridge.tech/home) framework.
+A task management app built with [Skybridge](https://docs.skybridge.tech), featuring a kanban board with drag-and-drop, status management, and real-time sync via Supabase.
 
-## Getting Started
+## Prerequisites
 
-### Prerequisites
+### Node.js (v24.13+)
 
-- Node.js 24+
-- HTTP tunnel such as [ngrok](https://ngrok.com/download) if you want to test with remote MCP hosts like ChatGPT or Claude.ai.
+- macOS: `brew install node`
+- Linux / other: [nodejs.org/en/download](https://nodejs.org/en/download)
 
-### Local Development
+### pnpm
 
-#### 1. Install
+[pnpm.io/installation](https://pnpm.io/installation)
 
 ```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-# or
-bun install
+npm install -g pnpm
 ```
 
-#### 2. Start your local server
+### Supabase CLI
 
-Run the development server from the root directory:
+- macOS: `brew install supabase/tap/supabase`
+- Linux / other: [supabase.com/docs/guides/cli/getting-started](https://supabase.com/docs/guides/cli/getting-started)
+
+### Supabase Project
+
+Create a project at [supabase.com/dashboard](https://supabase.com/dashboard). You'll need:
+
+- **Project URL** (`SUPABASE_URL`)
+- **Service Role Key** (`SUPABASE_SERVICE_ROLE_KEY`) — found in Settings > API
+
+### Clerk Project
+
+Create a project at [clerk.com/dashboard](https://clerk.com/dashboard). You'll need:
+
+- **Secret Key** (`CLERK_SECRET_KEY`)
+- **Publishable Key** (`CLERK_PUBLISHABLE_KEY`)
+
+### Claude Code (optional, for AI-assisted development)
+
+[docs.anthropic.com/en/docs/claude-code/overview](https://docs.anthropic.com/en/docs/claude-code/overview)
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+npm install -g @anthropic-ai/claude-code
+```
+
+## Setup
+
+**1. Install dependencies**
+
+```bash
+pnpm i
+```
+
+**2. Configure environment variables**
+
+```bash
+cp .env.example .env
+```
+
+Fill in your keys:
+
+```
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+CLERK_SECRET_KEY=sk_test_xxxxx
+CLERK_PUBLISHABLE_KEY=pk_test_xxxxx
+```
+
+**3. Link your Supabase project and push migrations**
+
+```bash
+supabase link
+supabase db push
+```
+
+This creates the `tasks` table and the `toggle_task` RPC function.
+
+**4. Start the dev server**
+
+```bash
 pnpm dev
-# or
-bun dev
 ```
 
-This command starts:
-- Your MCP server at `http://localhost:3000/mcp`.
-- Skybridge DevTools UI at `http://localhost:3000/`.
+The server runs at `http://localhost:3000`. For testing, we recommend using the Skybridge devtools available at [http://localhost:3000](http://localhost:3000) (no `/mcp` suffix).
 
-#### 3. Project structure
+## Connecting to Claude
 
-```
-├── server/
-│   └── src/
-│       ├── index.ts      # Entry point
-│       ├── middleware.ts # MCP middleware
-│       └── server.ts     # Widget registry & routes
-├── web/
-│   ├── src/
-│   │   ├── widgets/      # React components (one per widget)
-│   │   ├── helpers.ts    # Shared utilities
-│   │   └── index.css     # Global styles
-│   └── vite.config.ts
-├── alpic.json            # Deployment config
-├── nodemon.json          # Dev server config
-└── package.json
+When you're ready to test with Claude, tunnel your local server with [cloudflared](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/) to expose the MCP endpoint at `/mcp`:
+
+```bash
+cloudflared tunnel --url http://localhost:3000
 ```
 
-### Create your first widget
+Then add your tunnel URL with `/mcp` appended (e.g. `https://xxx.trycloudflare.com/mcp`) as a remote MCP server in Claude settings.
 
-#### 1. Add a new widget
+## Supabase Commands
 
-- Register a widget in `server/src/server.ts` with a unique name (e.g., `my-widget`) using [`registerWidget`](https://docs.skybridge.tech/api-reference/register-widget)
-- Create a matching React component at `web/src/widgets/my-widget.tsx`. **The file name must match the widget name exactly**.
+```bash
+# Link your local project to a remote Supabase project (required once)
+supabase link
 
-#### 2. Edit widgets with Hot Module Replacement (HMR)
+# Push local migrations to the remote database
+supabase db push
 
-Edit and save components in `web/src/widgets/` — changes will appear instantly inside your App.
+# Reset the remote database (drops all data, re-applies migrations)
+supabase db reset --linked
 
-#### 3. Edit server code
+# Create a new migration file
+supabase migration new <migration_name>
 
-Modify files in `server/` and refresh the connection with your testing MCP Client to see the changes.
+# Check migration status
+supabase migration list
+```
 
-### Testing your App
-
-You can test your App locally by using our DevTools UI on `localhost:3000` while running the `pnpm dev` command.
-
-To test your app with other MCP Clients like ChatGPT, Claude or VSCode, see [Testing Your App](https://docs.skybridge.tech/quickstart/test-your-app).
-
-
-## Deploy to Production
-
-Skybridge is infrastructure vendor agnostic, and your app can be deployed on any cloud platform supporting MCP.
-
-The simplest way to deploy your App in minutes is [Alpic](https://alpic.ai/).
-1. Create an account on [Alpic platform](https://app.alpic.ai/). 
-2. Connect your GitHub repository to automatically deploy at each commit. 
-3. Use your remote App URL to connect it to MCP Clients, or use the Alpic Playground to easily test your App.
+Migrations live in `supabase/migrations/`. After editing or adding a migration file, run `supabase db push` to apply it to your remote database.
 
 ## Resources
+
 - [Skybridge Documentation](https://docs.skybridge.tech/)
 - [Apps SDK Documentation](https://developers.openai.com/apps-sdk)
 - [MCP Apps Documentation](https://github.com/modelcontextprotocol/ext-apps/tree/main)
