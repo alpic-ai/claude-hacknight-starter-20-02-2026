@@ -1,7 +1,9 @@
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
-process.loadEnvFile();
+if (process.env.NODE_ENV !== "production") {
+  process.loadEnvFile();
+}
 
 export const env = createEnv({
   server: {
