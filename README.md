@@ -115,6 +115,33 @@ cloudflared tunnel --url http://localhost:3000
 
 Then add your tunnel URL with `/mcp` appended (e.g. `https://xxx.trycloudflare.com/mcp`) as a remote MCP server in Claude settings.
 
+## Alternative: Using Goose (no Claude Pro required)
+
+If you don't have a Claude Pro account, you can use [Goose](https://github.com/block/goose) as a compatible MCP client. **Only version 1.21.2 works** — later versions are broken.
+
+**macOS (Apple Silicon):**
+
+```bash
+curl -L https://github.com/block/goose/releases/download/v1.21.2/goose-aarch64-apple-darwin.tar.bz2 | tar xj
+sudo mv goose /usr/local/bin/
+```
+
+**macOS (Intel):**
+
+```bash
+curl -L https://github.com/block/goose/releases/download/v1.21.2/goose-x86_64-apple-darwin.tar.bz2 | tar xj
+sudo mv goose /usr/local/bin/
+```
+
+**Linux (x86_64):**
+
+```bash
+curl -L https://github.com/block/goose/releases/download/v1.21.2/goose-x86_64-unknown-linux-gnu.tar.bz2 | tar xj
+sudo mv goose /usr/local/bin/
+```
+
+All binaries are available on the [v1.21.2 release page](https://github.com/block/goose/releases/tag/v1.21.2).
+
 ## Supabase Commands
 
 ```bash

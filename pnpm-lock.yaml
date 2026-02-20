@@ -45,8 +45,8 @@ importers:
         specifier: ^19.2.4
         version: 19.2.4(react@19.2.4)
       skybridge:
-        specifier: '>=0.33.0 <1.0.0'
-        version: 0.33.0(@modelcontextprotocol/sdk@1.26.0(zod@4.3.6))(@skybridge/devtools@0.33.0)(@types/react@19.2.14)(nodemon@3.1.11)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(use-sync-external-store@1.6.0(react@19.2.4))(vite@7.3.1(@types/node@25.2.3)(tsx@4.21.0))
+        specifier: '>=0.33.1 <1.0.0'
+        version: 0.33.1(@modelcontextprotocol/sdk@1.26.0(zod@4.3.6))(@skybridge/devtools@0.33.1)(@types/react@19.2.14)(nodemon@3.1.11)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(use-sync-external-store@1.6.0(react@19.2.4))(vite@7.3.1(@types/node@25.2.3)(tsx@4.21.0))
       vite:
         specifier: ^7.3.1
         version: 7.3.1(@types/node@25.2.3)(tsx@4.21.0)
@@ -55,8 +55,8 @@ importers:
         version: 4.3.6
     devDependencies:
       '@skybridge/devtools':
-        specifier: '>=0.33.0 <1.0.0'
-        version: 0.33.0
+        specifier: '>=0.33.1 <1.0.0'
+        version: 0.33.1
       '@types/cors':
         specifier: ^2.8.19
         version: 2.8.19
@@ -589,8 +589,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@skybridge/devtools@0.33.0':
-    resolution: {integrity: sha512-rIYHaPHAaHMVuDeJnCdDWnaQM5b65fQwDcOUoGZ3XQXYeK6zotTwTsuyXjKOdz4R6B+ZNJBXDPEtzZhdVFcsrw==}
+  '@skybridge/devtools@0.33.1':
+    resolution: {integrity: sha512-/WsFHmX/IxW4yQPsykHnufDlmSULzXx9bzk7MfPcFrvPj6v1td2P2PhurzzgzUbFkm0Ih9fYlxju+klIiM9cDA==}
 
   '@stablelib/base64@1.0.1':
     resolution: {integrity: sha512-1bnPQqSxSuc3Ii6MhBysoWCg58j97aUjuCSZrGSmDxNqtytIi0k8utUenAwTZN4V5mXXYGsVUI9zeBqy+jBOSQ==}
@@ -1534,8 +1534,8 @@ packages:
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
 
-  skybridge@0.33.0:
-    resolution: {integrity: sha512-qZQ49PuhA0JhotXSlv/XYs+XF74MXYE5AaBhqP+60H//fKMMB0Yni1DGTSz575/YQUaWXNIGI2wxqJ6QtU4nzA==}
+  skybridge@0.33.1:
+    resolution: {integrity: sha512-sRno6yes+XMw9XW1AZZ4uIRRq4G7VL6CNUHqQ8MxShDoSFAHkMmrdT98vfBiO8G8YzBuUKqsWAG+x/QlNcN7bg==}
     hasBin: true
     peerDependencies:
       '@modelcontextprotocol/sdk': '>=1.0.0'
@@ -2297,7 +2297,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.57.1':
     optional: true
 
-  '@skybridge/devtools@0.33.0':
+  '@skybridge/devtools@0.33.1':
     dependencies:
       cors: 2.8.6
       express: 5.2.1
@@ -3283,12 +3283,12 @@ snapshots:
 
   sisteransi@1.0.5: {}
 
-  skybridge@0.33.0(@modelcontextprotocol/sdk@1.26.0(zod@4.3.6))(@skybridge/devtools@0.33.0)(@types/react@19.2.14)(nodemon@3.1.11)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(use-sync-external-store@1.6.0(react@19.2.4))(vite@7.3.1(@types/node@25.2.3)(tsx@4.21.0)):
+  skybridge@0.33.1(@modelcontextprotocol/sdk@1.26.0(zod@4.3.6))(@skybridge/devtools@0.33.1)(@types/react@19.2.14)(nodemon@3.1.11)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(use-sync-external-store@1.6.0(react@19.2.4))(vite@7.3.1(@types/node@25.2.3)(tsx@4.21.0)):
     dependencies:
       '@babel/core': 7.29.0
       '@modelcontextprotocol/sdk': 1.26.0(zod@4.3.6)
       '@oclif/core': 4.8.0
-      '@skybridge/devtools': 0.33.0
+      '@skybridge/devtools': 0.33.1
       ci-info: 4.4.0
       cors: 2.8.6
       dequal: 2.0.3
